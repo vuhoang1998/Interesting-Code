@@ -1,4 +1,3 @@
-# Interesting-Code
 import pymongo
 
 
@@ -30,33 +29,26 @@ menu_length = db["menu"].count()
 ##    print()
 
 
-bill= {
-        "Pizza" : 0,
-        "hambuger":0,
-        "Salad":0,
-        "Taco" :0
-        }
-bill_list= {
-    "Huy be": 0,
-    "Ha": 0,
-    "Huy big": 0
-    }
+price= {}
+bill_list= {}
 
 Total=0
 n = 0
 
 for i in range(menu_length):
-    bill[menu[i]["name"]] = menu[i]["price"]
+    price[menu[i]["name"]] = menu[i]["price"]
 
-
-print(bill)
+print(price)
 
 for i in menu_items:
-   for j in i["order"]:        
-        Total +=  bill[j]
-        bill_list[i["customer"]] += bill[j]
-        
-        
+       bill_list[i["customer"]] =0
+       n = 0
+       for j in i["order"]:
+            j = j.capitalize()
+            Total +=  price[j]
+            bill_list[i["customer"]] += price[j]
+           
+
 print(bill_list)
 print("Total:",Total)
 
